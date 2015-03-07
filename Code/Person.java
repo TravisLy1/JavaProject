@@ -73,17 +73,17 @@ class Student extends Person {
 	private int ID;
 	private String password;
 	private ArrayList<Course> myCourses;
-	
+
 	public Student(String inFirst, String inLast, int inAge, char inGender,	String inSSN) {
 		super(inFirst, inLast, inAge, inGender, inSSN);
 		myCourses = new ArrayList<Course>();
 	}
 
-	
+
 	public int getID(){
 		return ID;
 	}
-	
+
 	public void setID(int id){
 		ID = id;
 	}
@@ -91,27 +91,27 @@ class Student extends Person {
 	public String getPassword()	{
 		return password;
 	}
-	
+
 	public void setPassword(String pw) {
 		password = pw;
 	}
-	
+
 	public ArrayList<Course> getCourseList(){
 		return myCourses;
 	}
-	
+
 	public Boolean addCourse(Course c) {
 		Boolean status = false;
-		if (!myCourses.contains(c))		// if not yet enrolled, 
+		if (!myCourses.contains(c))		// if not yet enrolled,
 			status = myCourses.add(c);
 		return status;
 	}
-	
+
 	public Boolean removeCourse(Course c){
-		// if not yet enrolled, 
+		// if not yet enrolled,
 		return myCourses.remove(c);
 	}
-	
+
 }
 
 
