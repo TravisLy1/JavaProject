@@ -31,6 +31,10 @@ public class Person implements Comparable<Person> {
 		return lastName;
 	}
 
+    public String getFirstName() {
+   		return firstName;
+	}
+
 	public void setAge(int inAge) {
 		age = inAge;
 	}
@@ -73,10 +77,12 @@ class Student extends Person {
 	private int ID;
 	private String password;
 	private ArrayList<Course> myCourses;
+    public ArrayList<String> myCourseIDs; //Added by Sasi for the student load in the registration
 
 	public Student(String inFirst, String inLast, int inAge, char inGender,	String inSSN) {
 		super(inFirst, inLast, inAge, inGender, inSSN);
 		myCourses = new ArrayList<Course>();
+		myCourseIDs = new ArrayList<String>();
 	}
 
 
@@ -107,9 +113,21 @@ class Student extends Person {
 		return status;
 	}
 
+	public Boolean addCourse(String courseNumber ) {
+			Boolean status = false;
+			if (!myCourseIDs.contains(courseNumber))		// if not yet enrolled,
+				status = myCourseIDs.add(courseNumber);
+			return status;
+	}
+
 	public Boolean removeCourse(Course c){
 		// if not yet enrolled,
 		return myCourses.remove(c);
+	}
+
+    public Boolean removeCourse(String courseNumber){
+			// if not yet enrolled,
+			return myCourseIDs.remove(courseNumber);
 	}
 
 }
