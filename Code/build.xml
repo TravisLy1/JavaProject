@@ -1,0 +1,14 @@
+<project>
+
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="build/"/>
+        <copy file="Students.txt" todir="build"/>
+        <copy file="Courses.txt" todir="build"/>
+        <javac srcdir="." destdir="build/"/>
+    </target>
+
+</project>

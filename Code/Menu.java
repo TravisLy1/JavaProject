@@ -29,6 +29,7 @@ import java.util.Scanner;
 public class Menu {
 
 	String studentLoggedIn;
+	Registration registration = new Registration();
 
 	public Menu() {
 
@@ -129,12 +130,14 @@ public class Menu {
 						+ "-----------------------------------------------";
 		System.out.println(message);
 
-		// ***********************************************************************************
-		// -----------------------------------------------------------------------------------
-		// MAKE CALL TO SASI'S CODE TO GET THE COURSES FROM STUDENT
-		// studentLoggedIn
-		// -----------------------------------------------------------------------------------
-		// ***********************************************************************************
+		for ( Course course: registration.courseList ) {
+			if(registration.isRegistered(studentLoggedIn, course.getNumber())) {
+				System.out.println("Course: " + course.getName() +
+									" (" + course.getNumber() + ")\n " +
+									"       Starts: " + course.getStartDate() +
+									"  Ends: " + course.getEndDate());
+			}
+		}
 
 		this.mainMenu();
 	}
@@ -150,12 +153,8 @@ public class Menu {
 						+ "---------------------------------------";
 		System.out.println(message);
 
-		// ***********************************************************************************
-		// -----------------------------------------------------------------------------------
-		// MAKE CALL TO SASI'S CODE TO GET THE COURSES
-		// studentLoggedIn
-		// -----------------------------------------------------------------------------------
-		// ***********************************************************************************
+		registration.listCourses();
+		// registration.CourseList;
 
 		this.mainMenu();
 	}
@@ -175,20 +174,13 @@ public class Menu {
 
 		Scanner reader = new Scanner(System.in);
 		String input = reader.nextLine();
-		System.out.println(input);
 
 		Boolean registered = false;
-		// ***********************************************************************************
-		// -----------------------------------------------------------------------------------
-		// MAKE CALL TO SASI'S CODE TO ALTER THE STUDENT REGISTRATION
-		// studentLoggedIn
-		// -----------------------------------------------------------------------------------
-		// ***********************************************************************************
+		registered = registration.registerCourse(studentLoggedIn, input);
 
 		if(registered) {
-			// if successful resgistration
 			message = "\n"
-					+ "You have successfully register for: " + input + "\n";
+					+ "You have successfully registered for: " + input + "\n";
 			System.out.println(message);
 			this.mainMenu();
 		}
@@ -219,12 +211,7 @@ public class Menu {
 		String input = reader.nextLine();
 
 		Boolean unregistered = false;
-		// ***********************************************************************************
-		// -----------------------------------------------------------------------------------
-		// MAKE CALL TO SASI'S CODE TO ALTER THE TEXT FILES
-		// studentLoggedIn
-		// -----------------------------------------------------------------------------------
-		// ***********************************************************************************
+		unregistered = registration.unregisterCourse(studentLoggedIn, input);
 
 		if(unregistered) {
 			message = "\n"
